@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <section id="grid"></section>
+        <aside>
+            <div class="auto_btn_wrapper">
+                <p>Auto</p>
+                <button id="auto_switch_btn">
+                  <input type="checkbox">
+                  <div class="circle"></div>
+                </button>
+            </div>
+
+            <div class="columns_wrapper">
+                <label for="column_input">Columns:</label>
+                <input type="text" id="column_input" min="1" max="100" value="10">
+            </div>
+            
+            <div class="rows_wrapper">
+                <label for="row_input">Rows:</label>
+                <input type="text" id="row_input" min="1" max="100" value="10">
+            </div>
+
+            <div class="color_wrapper">
+                <label for="color_input">Color</label>
+                <input type="color" id="color_input">
+            </div>
+        </aside>
+    </main>
+</body>
+
+</html>

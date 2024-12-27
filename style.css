@@ -1,0 +1,107 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: hsl(0, 0%, 90%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    width: fit-content;
+    height: fit-content;
+    padding: 1.4rem;
+    background-color: hsl(0, 0%, 98%);
+    border-radius: 10px;
+    box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+#grid {
+    display: grid;
+    grid-template-columns: repeat(10, 50px);
+    grid-template-rows: repeat(10, 50px);
+}
+
+#grid .grid_item {
+    width: 50px;
+    height: 50px;
+    border: 1px solid hsl(0, 0%, 80%);
+    background-color: hsl(0, 0%, 100%);
+}
+
+aside {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+aside .auto_btn_wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    gap: 1rem;
+}
+
+aside .auto_btn_wrapper button {   
+    position: relative;
+    width: 5rem;
+    height: 2rem;
+    border: none;
+    border-radius: 2rem;
+    background-color: hsl(0, 0%, 80%);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+aside .auto_btn_wrapper button input {
+    opacity: 0;
+    height: inherit;
+    width: inherit;
+    cursor: pointer;
+}
+
+aside .auto_btn_wrapper .circle {
+    content: '';
+    position: absolute;
+    top: .25rem;
+    left: 5%;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    background-color: hsl(0, 0%, 50%);
+    transition: left 0.3s;
+}
+
+aside .auto_btn_wrapper button input:checked + .circle {
+    left: 65%;
+}
+
+aside label {
+    font-size: 1.2rem;
+}
+
+aside input[type="text"] {
+    padding: 0.5rem;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 5px;
+    font-size: .9rem;
+    width: 100%;
+}
+
+aside .color_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+}
