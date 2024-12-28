@@ -33,6 +33,7 @@ main {
 }
 
 #grid .grid_item {
+    cursor: pointer;
     width: 50px;
     height: 50px;
     border: 1px solid hsl(0, 0%, 80%);
@@ -104,4 +105,19 @@ aside .color_wrapper {
     flex-direction: column;
     align-items: center;
     gap: .5rem;
+}
+
+aside #clear_btn {
+    width: 100%;
+    padding: .7rem;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(0, 0%, 80%);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+aside #clear_btn:hover {
+    color: hsl(0, 0%, 95%);
+    background-color: hsl(0, 75%, 40%);
 }
