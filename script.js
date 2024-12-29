@@ -4,6 +4,9 @@ const grid = document.getElementById("grid");
 let current_columns = 10;
 let current_rows = 10;
 
+// Create the map to save the grid items
+let map = [];
+
 // Get the input fields
 const columns_input = document.getElementById("column_input");
 const rows_input = document.getElementById("row_input");
@@ -17,7 +20,10 @@ const auto_switch_checkbox = document.getElementById("auto_switch");
 // Get the clear button
 document.getElementById("clear_btn").addEventListener("click", clear_grid);
 
-function create_grid_item() {
+// Get the textarea
+const code_input = document.getElementById("code_input");
+
+function create_grid_item(id) {
     // Create a grid item
     let grid_item = document.createElement("button");
 
@@ -30,6 +36,8 @@ function create_grid_item() {
     } else {
         grid_item.addEventListener("click", change_color);
     }
+
+    grid_item.setAttribute("Id", `grid_item_${id}`)
 
     // Add the grid item to the grid
     grid.appendChild(grid_item);
@@ -44,7 +52,7 @@ function create_grid(columns, rows) {
 
     // Create the grid items
     for (let i = 0; i < grid_lenght; i++) {
-        create_grid_item();
+        create_grid_item(i);
     }
 
     // Set the grid template columns
@@ -75,8 +83,36 @@ function change_color(ev) {
 }
 
 function clear_grid() {
-    grid.innerHTML = "";
     create_grid(current_columns, current_rows);
+}
+
+function save_code() {
+    // Clear the map 
+    map = [];
+
+    let grid_lenght = current_rows * current_columns;
+
+    for (let i = 0; i <= grid_lenght; i++) {
+        // Get the grid item by ID
+        let grid_item = document.getElementById(`grid_item_${i}`);
+
+        // Check if the grid item is not null or undefined
+        if (grid_item) {
+            // Use getComputedStyle to get the computed style
+            let computed_style = window.getComputedStyle(grid_item);
+            let background_color = computed_style.backgroundColor;
+
+            // Create the par array to store the index and background color
+            let par = [];
+            par.push(i);
+            par.push(background_color);
+            
+            // Add the par in the map
+            map.push(par);
+        }
+    }
+
+    console.log(map);
 }
 
 // Create the initial grid
