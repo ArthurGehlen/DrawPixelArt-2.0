@@ -56,7 +56,7 @@ aside .auto_btn_wrapper {
     gap: 1rem;
 }
 
-aside .auto_btn_wrapper button {   
+aside .auto_btn_wrapper button {
     position: relative;
     width: 5rem;
     height: 2rem;
@@ -86,8 +86,26 @@ aside .auto_btn_wrapper .circle {
     transition: left 0.3s;
 }
 
-aside .auto_btn_wrapper button input:checked + .circle {
+aside .auto_btn_wrapper button input:checked+.circle {
     left: 65%;
+}
+
+aside #clear_btn {
+    width: 100%;
+    padding: .7rem;
+    border: none;
+    border-radius: 5px;
+    background-color: hsl(0, 0%, 80%);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+aside #clear_btn:hover {
+    color: hsl(0, 0%, 95%);
+    background-color: hsl(0, 75%, 40%);
 }
 
 aside label {
@@ -109,19 +127,24 @@ aside .color_wrapper {
     gap: .5rem;
 }
 
-aside #clear_btn {
-    width: 100%;
-    padding: .7rem;
-    border: none;
-    border-radius: 5px;
-    background-color: hsl(0, 0%, 80%);
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+.btn_wrapper {
+    display: flex;
+    justify-content: space-between;
 }
 
-aside #clear_btn:hover {
-    color: hsl(0, 0%, 95%);
-    background-color: hsl(0, 75%, 40%);
+.btn_wrapper button {
+    background-color: hsl(0, 0%, 50%);
+    color: hsl(0, 0%, 100%);
+    border: none;
+    border-radius: .6rem;
+    padding: .6rem;
+    width: 45%;
+    cursor: pointer;
+    transition: .4s ease background-color;
+}
+
+.btn_wrapper button:hover {
+    background-color: hsl(119, 87%, 46%);
 }
 
 aside textarea {

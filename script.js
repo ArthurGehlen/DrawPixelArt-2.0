@@ -20,6 +20,12 @@ const auto_switch_checkbox = document.getElementById("auto_switch");
 // Get the clear button
 document.getElementById("clear_btn").addEventListener("click", clear_grid);
 
+// Get the save button
+document.getElementById("save_btn").addEventListener("click", save_code);
+
+// Get the load button
+document.getElementById("load_btn").addEventListener("click", load_code);
+
 // Get the textarea
 const code_input = document.getElementById("code_input");
 
@@ -71,7 +77,9 @@ function update_grid(columns, rows) {
     if (rows != null) {
         current_rows = rows;
     }
-    create_grid(current_columns, current_rows);
+    save_code();
+    create_grid(currendt_columns, current_rows);
+    load_code();
 }
 
 function change_color(ev) {
@@ -106,13 +114,26 @@ function save_code() {
             let par = [];
             par.push(i);
             par.push(background_color);
-            
+
             // Add the par in the map
             map.push(par);
         }
     }
+}
 
-    console.log(map);
+function load_code() {
+    let grid_lenght = current_columns * current_rows;
+
+    for (let i = 0; i <= grid_lenght; i++) {
+        // Get the index from the map 
+        let index = map[i][0]; // The index is always the first 
+
+        // Get the background color from the map
+        let background_color = map[i][1]; // The background color is always the second 
+
+        // Apply
+        document.getElementById(`grid_item_${index}`).style.backgroundColor = background_color;
+    }
 }
 
 // Create the initial grid
@@ -130,5 +151,7 @@ rows_input.addEventListener("input", function () {
 // Update event listeners on auto-switch checkbox change
 auto_switch_checkbox.addEventListener("change", () => {
     // Recreate the grid to apply updated event listeners
+    save_code();
     create_grid(current_columns, current_rows);
+    load_code();
 });

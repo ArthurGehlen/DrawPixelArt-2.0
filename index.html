@@ -16,16 +16,19 @@
             <div class="auto_btn_wrapper">
                 <p>Auto</p>
                 <button>
-                  <input type="checkbox" id="auto_switch">
-                  <div class="circle"></div>
+                    <input type="checkbox" id="auto_switch">
+                    <div class="circle"></div>
                 </button>
+
+
+                <button id="clear_btn">Clear</button>
             </div>
 
             <div class="columns_wrapper">
                 <label for="column_input">Columns:</label>
                 <input type="text" id="column_input" minlength="1" maxlength="3" value="10" autocomplete="off">
             </div>
-            
+
             <div class="rows_wrapper">
                 <label for="row_input">Rows:</label>
                 <input type="text" id="row_input" minlength="1" maxlength="3" value="10" autocomplete="off">
@@ -36,9 +39,12 @@
                 <input type="color" id="color_input">
             </div>
 
-            <button id="clear_btn">Clear</button>
-        
-            <textarea id="code_input" placeholder="Load"></textarea>
+            <div class="btn_wrapper">
+                <button id="save_btn">Save</button>
+                <button id="load_btn">Load</button>
+            </div>
+
+            <textarea id="code_input" placeholder="Write a code"></textarea>
         </aside>
     </main>
 </body>
