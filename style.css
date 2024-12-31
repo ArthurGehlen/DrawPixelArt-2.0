@@ -41,11 +41,11 @@ main {
 }
 
 aside {
-    margin-top: 1rem;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -127,12 +127,12 @@ aside .color_wrapper {
     gap: .5rem;
 }
 
-.btn_wrapper {
+aside .btn_wrapper {
     display: flex;
     justify-content: space-between;
 }
 
-.btn_wrapper button {
+aside .btn_wrapper button {
     background-color: hsl(0, 0%, 50%);
     color: hsl(0, 0%, 100%);
     border: none;
@@ -143,7 +143,7 @@ aside .color_wrapper {
     transition: .4s ease background-color;
 }
 
-.btn_wrapper button:hover {
+aside .btn_wrapper button:hover {
     background-color: hsl(119, 87%, 46%);
 }
 

@@ -8,6 +8,9 @@ let current_rows = 10;
 // Create the map to save grid items
 let map = [];
 
+// Boolean to verify if the pixel art is saved
+let is_saved = false;
+
 // Get the input fields
 const columns_input = document.getElementById("column_input");
 const rows_input = document.getElementById("row_input");
@@ -78,9 +81,7 @@ function update_grid(columns, rows) {
     if (rows != null) {
         current_rows = rows;
     }
-    save_code();
     create_grid(current_columns, current_rows);
-    load_code();
 }
 
 function change_color(ev) {
@@ -120,6 +121,8 @@ function save_code() {
             map.push(par);
         }
     }
+
+    is_saved = true;
 }
 
 function load_code() {
@@ -135,6 +138,18 @@ function load_code() {
         // Apply the background color to the grid item
         document.getElementById(`grid_item_${index}`).style.backgroundColor = background_color;
     }
+
+    is_saved = false;
+}
+
+function pixel_art_is_empty() {
+    // Check if the map array is empty
+    if (map == []) {
+        return true; // Return true if the map is empty
+    }
+    else {
+        return false; // Return false if the map is not empty
+    }
 }
 
 function load_user_code() {
@@ -149,7 +164,7 @@ function load_user_code() {
         let par = data[i];
 
         // Split the current element into two parts using ":" as a separator
-        // The first part will be used as an identifier, and the second as the background color
+        // The first part will be used as an id, and the second as the background color
         let values = par.split(":");
 
         // Create the ID for the HTML element by combining "grid_item_" with the first part of the values
@@ -167,12 +182,53 @@ function load_user_code() {
 create_grid(current_columns, current_rows);
 
 // Event listeners for input fields
-columns_input.addEventListener("input", function () {
-    update_grid(columns_input.value, null);
-});
+columns_input.addEventListener("click", function () {
+    // Check if the user confirms the action that will result in losing their Pixel Art
+    if (pixel_art_is_empty) {
+        // Add an event listener to the code_input element to trigger an update when the input changes
+        columns_input.addEventListener("input", function () {
+            // Call the update_grid function with the current number of columns and a null value
+            update_grid(columns_input.value, null);
+        });
+    }
+    else if (is_saved) {
+        columns_input.addEventListener("input", function () {
+            update_grid(columns_input.value, null);
+        });
+    }
+    else if (confirm("Warning! If you proceed, your Pixel Art will be lost. Please save your progress if you wish to keep it. Do you want to continue?")) {
+        columns_input.addEventListener("input", function () {
+            update_grid(columns_input.value, null);
+        });
+    }
+    else {
+        // Notify the user that the action has been canceled
+        alert("Action canceled. Your Pixel Art is safe for now.");
+        // Exit the function to prevent further execution
+        return;
+    }
+})
 
-rows_input.addEventListener("input", function () {
-    update_grid(null, rows_input.value);
+rows_input.addEventListener("click", function () {
+    if (pixel_art_is_empty) {
+        rows_input.addEventListener("input", function () {
+            update_grid(null, rows_input.value);
+        });
+    }
+    else if (is_saved) {
+        rows_input.addEventListener("input", function () {
+            update_grid(null, rows_input.value);
+        });
+    }
+    else if (confirm("Warning! If you proceed, your Pixel Art will be lost. Please save your progress if you wish to keep it. Do you want to continue?")) {
+        rows_input.addEventListener("input", function () {
+            update_grid(null, rows_input.value);
+        });
+    }
+    else {
+        alert("Action canceled. Your Pixel Art is safe for now.");
+        return;
+    }
 });
 
 code_input.addEventListener("input", load_user_code);
