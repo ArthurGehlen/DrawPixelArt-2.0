@@ -75,7 +75,6 @@ aside .auto_btn_wrapper button input {
 }
 
 aside .auto_btn_wrapper .circle {
-    content: '';
     position: absolute;
     top: .25rem;
     left: 5%;
