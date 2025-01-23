@@ -4,7 +4,8 @@ let current_columns = 10;
 let current_rows = 10;
 
 // Create the map to save grid items
-let map = [];
+let map_switch = []; // Map to store the art when the switch is toggled
+let map_btn = []; // Map to store the art when the button is clicked
 
 const columns_input = document.getElementById("column_input");
 const rows_input = document.getElementById("row_input");
@@ -15,11 +16,9 @@ const auto_switch_checkbox = document.getElementById("auto_switch");
 
 document.getElementById("clear_btn").addEventListener("click", clear_grid);
 
-document.getElementById("save_btn").addEventListener("click", function () {
-    save_code();
-});
+document.getElementById("save_btn").addEventListener("click", () => save_code(map_btn));
 
-document.getElementById("load_btn").addEventListener("click", load_code);
+document.getElementById("load_btn").addEventListener("click", () => load_code(map_btn));
 
 const code_input = document.getElementById("code_input");
 
@@ -41,7 +40,6 @@ function create_grid_item(id) {
 }
 
 function create_grid(columns, rows) {
-    // Clear all existing grid items
     grid.innerHTML = "";
 
     let grid_lenght = columns * rows;
@@ -67,7 +65,6 @@ function update_grid(columns, rows) {
 function change_color(ev) {
     let color = color_picker.value;
 
-    // Change the background color of the grid item
     ev.target.style.backgroundColor = color;
 }
 
@@ -75,17 +72,17 @@ function clear_grid() {
     create_grid(current_columns, current_rows);
 }
 
-function save_code() {
+function save_code(map) {
     // Clear the map to save the current grid state
-    map = [];
+    // map = []; // Incorrect reference handling when saving the grid state
+    // When the function save_code(map) is called, the passed map parameter is overwritten locally
+    map.splice(0, map.length);
 
     let grid_lenght = current_rows * current_columns;
 
     for (let i = 0; i <= grid_lenght; i++) {
-        // Get the grid item by its ID
         let grid_item = document.getElementById(`grid_item_${i}`);
 
-        // Ensure the grid item exists
         if (grid_item) {
             // Get the computed background color of the grid item
             let computed_style = window.getComputedStyle(grid_item);
@@ -96,21 +93,20 @@ function save_code() {
             par.push(i);
             par.push(background_color);
 
-            // Add the par to the map
             map.push(par);
         }
     }
 }
 
-function load_code() {
-    let grid_lenght = current_columns * current_rows;
+function load_code(map) {
+    let grid_length = current_columns * current_rows;
 
-    for (let i = 0; i <= grid_lenght; i++) {
-        let index = map[i][0]; // The index is always the first element
-
-        let background_color = map[i][1]; // The background color is always the second element
-
-        document.getElementById(`grid_item_${index}`).style.backgroundColor = background_color;
+    for (let i = 0; i < grid_length; i++) {
+        if (map[i]) {
+            let index = map[i][0];
+            let background_color = map[i][1];
+            document.getElementById(`grid_item_${index}`).style.backgroundColor = background_color;
+        }
     }
 }
 
@@ -158,7 +154,7 @@ code_input.addEventListener("input", load_user_code);
 // Update event listeners when the auto-switch checkbox is toggled
 auto_switch_checkbox.addEventListener("change", () => {
     // Recreate the grid to apply updated event listeners
-    save_code();
+    save_code(map_switch);
     create_grid(current_columns, current_rows);
-    load_code();
+    load_code(map_switch);
 });
