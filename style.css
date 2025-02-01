@@ -38,6 +38,11 @@ main {
     height: 50px;
     border: 1px solid hsl(0, 0%, 80%);
     background-color: hsl(0, 0%, 100%);
+
+}
+
+.grid_item:focus {
+    transform: scale(1.1, 1.1);
 }
 
 aside {
@@ -111,12 +116,16 @@ aside label {
     font-size: 1.2rem;
 }
 
-aside input[type="text"] {
+aside input[type="number"] {
     padding: 0.5rem;
     border: 1px solid hsl(0, 0%, 80%);
     border-radius: 5px;
     font-size: .9rem;
     width: 100%;
+}
+
+aside input[type="number"]::-webkit-inner-spin-button {
+    display: none;
 }
 
 aside .color_wrapper {

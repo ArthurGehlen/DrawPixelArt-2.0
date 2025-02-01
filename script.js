@@ -137,16 +137,12 @@ function load_user_code() {
 // Create the initial grid
 create_grid(current_columns, current_rows);
 
-columns_input.addEventListener("click", function () {
-    columns_input.addEventListener("input", function () {
-        update_grid(columns_input.value, null);
-    });
+columns_input.addEventListener("input", function () {
+    update_grid(columns_input.value, null);
 });
 
-rows_input.addEventListener("click", function () {
-    rows_input.addEventListener("input", function () {
-        update_grid(null, rows_input.value);
-    });
+rows_input.addEventListener("input", function () {
+    update_grid(null, rows_input.value);
 });
 
 code_input.addEventListener("input", load_user_code);
